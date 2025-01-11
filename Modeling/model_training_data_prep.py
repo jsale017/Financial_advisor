@@ -4,7 +4,7 @@ import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-with open("sp500_engineered_features.pkl", "rb") as f:
+with open("Data/sp500_engineered_features.pkl", "rb") as f:
     data = pickle.load(f)
 
 train_test_data = {}
@@ -37,7 +37,7 @@ for stock, df in data.items():
     except Exception as e:
         print(f"Error processing {stock}: {e}")
 
-with open("sp500_train_test_data.pkl", "wb") as f:
+with open("Data/sp500_train_test_data.pkl", "wb") as f:
     pickle.dump(train_test_data, f)
 
 print("Feature processing for all stocks completed and saved.")

@@ -27,7 +27,7 @@ for symbol in sp500_symbols:
         print(f"Error fetching data for {symbol}: {e}")
 
 # Save the data
-with open("sp500_data.pkl", "wb") as f:
+with open("Data/sp500_data.pkl", "wb") as f:
     pd.to_pickle(all_data, f)
 
 print("Data saved successfully!")

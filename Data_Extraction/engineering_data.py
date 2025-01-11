@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 # Load the raw data
-with open("sp500_data.pkl", "rb") as f:
+with open("Data/sp500_data.pkl", "rb") as f:
     sp500_data = pickle.load(f)
 
 # Function to flatten MultiIndex DataFrame
@@ -68,7 +68,7 @@ for symbol, data in sp500_data.items():
     except Exception as e:
         print(f"Error processing {symbol}: {e}")
 
-with open("sp500_engineered_features.pkl", "wb") as f:
+with open("Data/sp500_engineered_features.pkl", "wb") as f:
     pickle.dump(engineered_data, f)
 
 print("Feature engineering completed and saved to sp500_engineered_features.pkl")
