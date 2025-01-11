@@ -9,10 +9,9 @@ with open("sp500_data.pkl", "rb") as f:
 # Function to flatten MultiIndex DataFrame
 def flatten_multiindex(df):
     # Rename MultiIndex columns to single level
-    df.columns = [col[0] for col in df.columns]  # Use only the first level (Price)
+    df.columns = [col[0] for col in df.columns] 
     return df
 
-# Feature engineering function
 def engineer_features(df):
     df = df.dropna()
 
@@ -53,7 +52,7 @@ def engineer_features(df):
     # Feature: Volatility (Rolling Std of Returns)
     df['Volatility'] = df['Daily_Return'].rolling(window=20).std()
 
-    # Drop NaN rows created by rolling calculations
+    # Drop NaN
     df = df.dropna()
 
     return df
@@ -65,12 +64,10 @@ for symbol, data in sp500_data.items():
         print(f"Processing {symbol}...")
         # Flatten the MultiIndex structure
         flat_data = flatten_multiindex(data)
-        # Perform feature engineering
         engineered_data[symbol] = engineer_features(flat_data)
     except Exception as e:
         print(f"Error processing {symbol}: {e}")
 
-# Save the engineered features
 with open("sp500_engineered_features.pkl", "wb") as f:
     pickle.dump(engineered_data, f)
 
